@@ -1,12 +1,13 @@
 defmodule Learned.Til do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Learned.User
   alias Learned.Til
 
 
   schema "tils" do
     field :text, :string
-    field :user_id, :id
+    belongs_to :user, User
 
     timestamps()
   end

@@ -1,3 +1,5 @@
+<%= link "TIL List", to: til_path(@conn, :list) %>
+
 <h2><%= name(@user) %></h2>
 
 <div>

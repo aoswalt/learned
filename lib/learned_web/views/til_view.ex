@@ -1,4 +1,4 @@
-defmodule LearnedWeb.PageView do
+defmodule LearnedWeb.TilView do
   use LearnedWeb, :view
   alias Learned.Til
   alias Learned.User

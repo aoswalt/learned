@@ -16,7 +16,7 @@ defmodule LearnedWeb.Router do
   scope "/", LearnedWeb do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/", TilController, :list
     get "/users/:user_id", UserController, :show
   end
 

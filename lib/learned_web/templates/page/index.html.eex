@@ -1,8 +1,10 @@
 <div>
   <%= for til <- @tils do %>
-    <p>
-      <%= text(til) %>
-      <%= link user_name(til), to: user_path(@conn, :show, user_id(til)) %>
-    </p>
+    <div class="til">
+      <p><%= text(til) %></p>
+      <p class="til-author">
+        <%= link user_name(til), to: user_path(@conn, :show, user_id(til)) %>
+      </p>
+    </div>
   <% end %>
 </div>

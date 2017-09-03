@@ -1,13 +1,8 @@
-<div class="jumbotron">
-  <h2><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h2>
-  <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
-</div>
-
 <div>
   <%= for til <- @tils do %>
     <p>
       <%= text(til) %>
-      <%= link user_id(til), to: user_path(@conn, :show, user_id(til)) %>
+      <%= link user_name(til), to: user_path(@conn, :show, user_id(til)) %>
     </p>
   <% end %>
 </div>

@@ -1,0 +1,1 @@
+<%= render_one(@til, __MODULE__, "til.html") %>

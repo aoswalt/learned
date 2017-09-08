@@ -2,10 +2,4 @@
 
 <h2><%= name(@user) %></h2>
 
-<div>
-  <%= for til <- @user.tils do %>
-    <div class="til">
-      <p><%= til_text(til) %></p>
-    </div>
-  <% end %>
-</div>
+<%= render_many(@user.tils, LearnedWeb.TilView, "til.html") %>

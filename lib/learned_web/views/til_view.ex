@@ -6,8 +6,12 @@ defmodule LearnedWeb.TilView do
   alias LearnedWeb.Endpoint
 
   def text(%Til{text: text}), do: text
+
   def user_id(%Til{user_id: user_id}), do: user_id
+
+  # TODO(adam): find a better way to handle non loaded user
   def user_name(%Til{user: %User{name: name}}), do: name
+  def user_name(_), do: ""
 
   def render("list.json", %{tils: tils}) do
     %{data: render_many(tils, __MODULE__, "til.json")}

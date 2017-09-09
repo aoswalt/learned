@@ -6,7 +6,7 @@ defmodule LearnedWeb.TilController do
 
   def list(conn, _params) do
     tils = Repo.all(from t in Til, preload: [:user])
-    render conn, "list.html", tils: tils
+    render conn, :list, tils: tils
   end
 
   def show(conn, %{"id" => id}) do
@@ -14,6 +14,6 @@ defmodule LearnedWeb.TilController do
       where: t.id == ^id,
       preload: [:user])
     |> Repo.one
-    render conn, "show.html", til: til
+    render conn, :show, til: til
   end
 end

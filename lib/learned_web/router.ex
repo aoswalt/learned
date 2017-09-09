@@ -23,7 +23,12 @@ defmodule LearnedWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", LearnedWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", LearnedWeb do
+    pipe_through :api
+
+    get "/", TilController, :list
+    get "/tils", TilController, :list
+    get "/tils/:id", TilController, :show
+    get "/users/:user_id", UserController, :show
+  end
 end

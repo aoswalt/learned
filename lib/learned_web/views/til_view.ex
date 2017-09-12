@@ -23,10 +23,23 @@ defmodule LearnedWeb.TilView do
 
   def render("til.json", %{til: til}) do
     %{
-      "id" => til.id,
-      "text" => til.text,
-      "userId" => til.user_id,
-      "self" => til_url(Endpoint, :show, til.id),
+      "id" => to_string(til.id),
+      "type" => "tils",
+      "attributes" => %{
+        "text" => til.text,
+      },
+      "relationships" => %{
+        "user" => %{
+          "id" => to_string(til.user_id),
+          "type" => "users",
+          "links" => %{
+            "self" => user_url(Endpoint, :show, til.user_id),
+          },
+        },
+      },
+      "links" => %{
+        "self" => til_url(Endpoint, :show, til.id),
+      },
     }
   end
 end

@@ -16,6 +16,7 @@ defmodule LearnedWeb.Router do
     get "/", TilController, :list
     get "/tils", TilController, :list
     get "/tils/:id", TilController, :show
+    post "/tils", TilController, :create
     get "/users/:user_id", UserController, :show
   end
 end

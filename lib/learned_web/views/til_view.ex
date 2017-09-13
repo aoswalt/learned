@@ -26,7 +26,27 @@ defmodule LearnedWeb.TilView do
       "id" => til.id,
       "text" => til.text,
       "userId" => til.user_id,
-      "self" => til_url(Endpoint, :show, til.id),
+      "self" => til_url(Endpoint, :show, til.id)
+    }
+  end
+
+  def render("error.json", %{changeset: changeset}) do
+    errors = changeset.errors
+    |> Enum.map(&error_keywords_to_map/1)
+
+    render("error.json", %{errors: errors})
+  end
+
+  def render("error.json", %{errors: errors}) do
+    %{
+      errors: errors
+    }
+  end
+
+  defp error_keywords_to_map({field, {reason, _}}) do
+    %{
+      title: field,
+      detail: reason
     }
   end
 end

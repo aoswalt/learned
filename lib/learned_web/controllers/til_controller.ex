@@ -16,4 +16,20 @@ defmodule LearnedWeb.TilController do
     |> Repo.one
     render conn, :show, til: til
   end
+
+  def create(conn, %{"text" => text, "userId" => user_id}) do
+    params = %{
+      text: text,
+      user_id: user_id
+    }
+
+    %Til{}
+    |> Til.changeset(params)
+    |> Repo.insert
+    |> IO.inspect
+    |> case do
+      {:ok, nil_til} -> render conn, :show, til: nil_til
+      {:error, changeset} -> render conn, :error, changeset: changeset
+    end
+  end
 end

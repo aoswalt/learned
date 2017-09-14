@@ -4,9 +4,9 @@ defmodule LearnedWeb.TilController do
   alias Learned.Repo
   alias Learned.Til
 
-  def list(conn, _params) do
+  def index(conn, _params) do
     tils = Repo.all(from t in Til, preload: [:user])
-    render conn, :list, tils: tils
+    render conn, :index, tils: tils
   end
 
   def show(conn, %{"id" => id}) do

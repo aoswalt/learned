@@ -13,10 +13,17 @@ defmodule LearnedWeb.Router do
   scope "/", LearnedWeb do
     pipe_through :common # Use shared browser api pipeline
 
-    get "/", TilController, :list
-    get "/tils", TilController, :list
+    get "/", TilController, :index
+
+    get "/tils", TilController, :index
+    # get "/tils/:id/edit", TilController, :edit
+    # get "/tils/new", TilController, :new
     get "/tils/:id", TilController, :show
     post "/tils", TilController, :create
+    # patch "/tils/:id", TilController, :update
+    # put "/tils/:id", TilController, :update
+    # delete "/tils/:id", TilController, :delete
+
     get "/users/:user_id", UserController, :show
   end
 end

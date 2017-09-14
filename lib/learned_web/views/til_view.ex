@@ -13,7 +13,7 @@ defmodule LearnedWeb.TilView do
   def user_name(%Til{user: %User{name: name}}), do: name
   def user_name(_), do: ""
 
-  def render("list.json", %{tils: tils}) do
+  def render("index.json", %{tils: tils}) do
     %{data: render_many(tils, __MODULE__, "til.json")}
   end
 

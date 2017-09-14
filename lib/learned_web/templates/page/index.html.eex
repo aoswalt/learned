@@ -1,0 +1,3 @@
+<h1>Today I Learned </h1>
+
+<%= render_many(@tils, LearnedWeb.TilView, "til.html") %>

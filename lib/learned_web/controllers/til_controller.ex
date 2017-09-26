@@ -5,7 +5,10 @@ defmodule LearnedWeb.TilController do
   alias Learned.Til
 
   def index(conn, _params) do
-    tils = Repo.all(from t in Til, preload: [:user])
+    tils = (from t in Til,
+      preload: [:user],
+      order_by: [desc: t.inserted_at])
+    |> Repo.all
     render conn, :index, tils: tils
   end
 
@@ -26,7 +29,6 @@ defmodule LearnedWeb.TilController do
     %Til{}
     |> Til.changeset(params)
     |> Repo.insert
-    |> IO.inspect
     |> case do
       {:ok, nil_til} -> render conn, :show, til: nil_til
       {:error, changeset} -> render conn, :error, changeset: changeset

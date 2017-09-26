@@ -3,4 +3,7 @@
   <p class="til-author">
     <%= link user_name(@til), to: user_path(LearnedWeb.Endpoint, :show, user_id(@til)) %>
   </p>
+  <p class="til-self">
+    <%= link NaiveDateTime.to_date(@til.inserted_at), to: til_path(LearnedWeb.Endpoint, :show, @til.id) %>
+  </p>
 </div>

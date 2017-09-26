@@ -1,0 +1,7 @@
+<%= form_for @changeset, til_path(@conn, :update, @id), fn f -> %>
+  <label>
+    Text: <%= text_input f, :text %>
+  </label>
+
+  <%= submit "Submit" %>
+<% end %>

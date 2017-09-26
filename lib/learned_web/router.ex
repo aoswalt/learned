@@ -26,12 +26,12 @@ defmodule LearnedWeb.Router do
     get "/", PageController, :index
 
     get "/tils", TilController, :index
-    # get "/tils/:id/edit", TilController, :edit
+    get "/tils/:id/edit", TilController, :edit
     # get "/tils/new", TilController, :new
     get "/tils/:id", TilController, :show
     post "/tils", TilController, :create
-    # patch "/tils/:id", TilController, :update
-    # put "/tils/:id", TilController, :update
+    patch "/tils/:id", TilController, :update
+    put "/tils/:id", TilController, :update
     # delete "/tils/:id", TilController, :delete
 
     get "/users/:user_id", UserController, :show

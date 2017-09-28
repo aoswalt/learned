@@ -9,6 +9,8 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+#
+#     mix ecto.reset will rebuild the database with seeding
 
 alias Learned.Repo
 

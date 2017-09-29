@@ -1,3 +1,4 @@
+<%= link "Back", to: til_path(LearnedWeb.Endpoint, :show, @id)  %>
 <%= form_for @changeset, til_path(@conn, :update, @id), fn f -> %>
   <label>
     Text: <%= text_input f, :text %>

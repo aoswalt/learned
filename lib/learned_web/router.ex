@@ -27,7 +27,7 @@ defmodule LearnedWeb.Router do
 
     get "/tils", TilController, :index
     get "/tils/:id/edit", TilController, :edit
-    # get "/tils/new", TilController, :new
+    get "/tils/new", TilController, :new
     get "/tils/:id", TilController, :show
     post "/tils", TilController, :create
     patch "/tils/:id", TilController, :update

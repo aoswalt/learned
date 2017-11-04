@@ -1,1 +1,2 @@
+<%= link "New Post", to: til_path(@conn, :new) %>
 <%= render_many(@tils, __MODULE__, "til.html") %>

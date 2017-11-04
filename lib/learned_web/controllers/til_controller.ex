@@ -19,12 +19,29 @@ defmodule LearnedWeb.TilController do
     render conn, :edit, id: id, changeset: changeset
   end
 
+  def new(conn, _params) do
+    changeset = Til.changeset(%Til{}, %{})
+    render conn, :new, changeset: changeset
+  end
+
   def show(conn, %{"id" => id}) do
     til = (from t in Til,
       where: t.id == ^id,
       preload: [:user])
     |> Repo.one
     render conn, :show, til: til
+  end
+
+  def create(conn, %{"til" => %{"text" => text}}) do
+    # TODO(adam): get actual user_id
+    %Til{}
+    |> Til.changeset(%{text: text, user_id: 1})
+    |> Repo.insert
+    |> case do
+      # add til id to route
+      {:ok, new_til} -> render conn, :show, til: new_til
+      {:error, changeset} -> render conn, :error, changeset: changeset
+    end
   end
 
   def create(conn, %{"text" => text, "userId" => user_id}) do

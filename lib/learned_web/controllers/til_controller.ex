@@ -68,4 +68,11 @@ defmodule LearnedWeb.TilController do
       {:error, changeset} -> render conn, :error, changeset: changeset
     end
   end
+
+  def delete(conn, %{"id" => id}) do
+    Repo.get(Til, id)
+    |> Repo.delete!
+
+    redirect(conn, to: til_path(conn, :index))
+  end
 end

@@ -32,7 +32,7 @@ defmodule LearnedWeb.Router do
     post "/tils", TilController, :create
     patch "/tils/:id", TilController, :update
     put "/tils/:id", TilController, :update
-    # delete "/tils/:id", TilController, :delete
+    delete "/tils/:id", TilController, :delete
 
     get "/users/:user_id", UserController, :show
   end

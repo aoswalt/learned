@@ -9,6 +9,14 @@ p {
   margin: .5rem 0;
 }
 
+.til-content {
+  display: flex;
+}
+
+.til-text {
+  flex: 1;
+}
+
 .til-self {
   text-align: right;
 }

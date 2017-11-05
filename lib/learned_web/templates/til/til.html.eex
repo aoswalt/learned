@@ -1,8 +1,13 @@
 <div class="til">
-  <p><%= text(@til) %></p>
+  <div class="til-content">
+    <p class="til-text"><%= text(@til) %></p>
+    <%= link "x", to: til_path(LearnedWeb.Endpoint, :delete, @til.id), method: :delete %>
+  </div>
+
   <p class="til-author">
     <%= link user_name(@til), to: user_path(LearnedWeb.Endpoint, :show, user_id(@til)) %>
   </p>
+
   <p class="til-self">
     <%= link NaiveDateTime.to_date(@til.inserted_at), to: til_path(LearnedWeb.Endpoint, :show, @til.id) %>
   </p>

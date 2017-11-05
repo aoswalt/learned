@@ -1,7 +1,7 @@
 <div class="til">
   <div class="til-content">
     <p class="til-text"><%= text(@til) %></p>
-    <%= link "x", to: til_path(LearnedWeb.Endpoint, :delete, @til.id), method: :delete %>
+    <%= link "x", to: til_path(LearnedWeb.Endpoint, :delete, @til.id), method: :delete, data: [confirm: "Are you sure?"] %>
   </div>
 
   <p class="til-author">

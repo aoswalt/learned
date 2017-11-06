@@ -2,31 +2,29 @@ defmodule LearnedWeb.Router do
   use LearnedWeb, :router
   alias Plug.Conn
 
-  defp conditional_plugs(%Conn{private: %{phoenix_format: "html"}} = conn, opts) do
-    # TODO(adam): is there a way to use the plug macro here?
-    conn
-    |> fetch_session(opts)
-    |> fetch_flash(opts)
-    |> protect_from_forgery(opts)
-    |> put_secure_browser_headers(opts)
+  pipeline :browser do
+    plug :accepts, ["html"]
+    plug :fetch_session
+    plug :fetch_flash
+    plug :protect_from_forgery
+    plug :put_secure_browser_headers
   end
 
-  defp conditional_plugs(conn, _opts) do
-    conn
-  end
-
-  pipeline :common do
-    plug :accepts, ["json", "html"]
-    plug :conditional_plugs
+  pipeline :api do
+    plug :accepts, ["json"]
   end
 
   scope "/", LearnedWeb do
-    pipe_through :common # Use shared browser api pipeline
+    pipe_through :browser
 
     get "/", PageController, :index
-
     resources "/tils", TilController
-
     get "/users/:user_id", UserController, :show
+  end
+
+  scope "/api", LearnedWeb do
+    pipe_through :api
+
+    resources "/tils", TilController, except: [:new, :edit], as: :til_api
   end
 end

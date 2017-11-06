@@ -1,0 +1,6 @@
+<%= link "Back", to: post_path(LearnedWeb.Endpoint, :show, @id)  %>
+<%= render(__MODULE__,
+  "form.html",
+  changeset: @changeset,
+  action: post_path(@conn, :update, @id))
+%>

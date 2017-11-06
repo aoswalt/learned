@@ -18,13 +18,13 @@ defmodule LearnedWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    resources "/tils", TilController
+    resources "/posts", PostController
     get "/users/:user_id", UserController, :show
   end
 
   scope "/api", LearnedWeb, as: :api do
     pipe_through :api
 
-    resources "/tils", TilController, except: [:new, :edit]
+    resources "/posts", PostController, except: [:new, :edit]
   end
 end

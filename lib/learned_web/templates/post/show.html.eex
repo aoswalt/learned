@@ -1,0 +1,2 @@
+<%= link "Edit", to: post_path(LearnedWeb.Endpoint, :edit, @post.id) %>
+<%= render_one(@post, __MODULE__, "post.html") %>

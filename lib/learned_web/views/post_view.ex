@@ -1,32 +1,32 @@
-defmodule LearnedWeb.TilView do
+defmodule LearnedWeb.PostView do
   use LearnedWeb, :view
   import LearnedWeb.Router.Helpers
-  alias Learned.Til
+  alias Learned.Post
   alias Learned.User
   alias LearnedWeb.Endpoint
 
-  def text(%Til{text: text}), do: text
+  def text(%Post{text: text}), do: text
 
-  def user_id(%Til{user_id: user_id}), do: user_id
+  def user_id(%Post{user_id: user_id}), do: user_id
 
   # TODO(adam): find a better way to handle non loaded user
-  def user_name(%Til{user: %User{name: name}}), do: name
+  def user_name(%Post{user: %User{name: name}}), do: name
   def user_name(_), do: ""
 
-  def render("index.json", %{tils: tils}) do
-    %{data: render_many(tils, __MODULE__, "til.json")}
+  def render("index.json", %{posts: posts}) do
+    %{data: render_many(posts, __MODULE__, "post.json")}
   end
 
-  def render("show.json", %{til: til}) do
-    %{data: [render_one(til, __MODULE__, "til.json")]}
+  def render("show.json", %{post: post}) do
+    %{data: [render_one(post, __MODULE__, "post.json")]}
   end
 
-  def render("til.json", %{til: til}) do
+  def render("post.json", %{post: post}) do
     %{
-      "id" => til.id,
-      "text" => til.text,
-      "userId" => til.user_id,
-      "self" => api_til_url(Endpoint, :show, til.id)
+      "id" => post.id,
+      "text" => post.text,
+      "userId" => post.user_id,
+      "self" => api_post_url(Endpoint, :show, post.id)
     }
   end
 

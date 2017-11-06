@@ -1,11 +1,11 @@
-defmodule Learned.Til do
+defmodule Learned.Post do
   use Ecto.Schema
   import Ecto.Changeset
   alias Learned.User
-  alias Learned.Til
+  alias __MODULE__
 
 
-  schema "tils" do
+  schema "posts" do
     field :text, :string
     belongs_to :user, User
 
@@ -13,8 +13,8 @@ defmodule Learned.Til do
   end
 
   @doc false
-  def changeset(%Til{} = til, attrs) do
-    til
+  def changeset(%Post{} = post, attrs) do
+    post
     |> cast(attrs, [:text, :user_id])
     |> validate_required([:text, :user_id])
   end

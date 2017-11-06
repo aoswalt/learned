@@ -1,0 +1,14 @@
+<div class="post">
+  <div class="post-content">
+    <p class="post-text"><%= text(@post) %></p>
+    <%= link "x", to: post_path(LearnedWeb.Endpoint, :delete, @post.id), method: :delete, data: [confirm: "Are you sure?"] %>
+  </div>
+
+  <p class="post-author">
+    <%= link user_name(@post), to: user_path(LearnedWeb.Endpoint, :show, user_id(@post)) %>
+  </p>
+
+  <p class="post-self">
+    <%= link NaiveDateTime.to_date(@post.inserted_at), to: post_path(LearnedWeb.Endpoint, :show, @post.id) %>
+  </p>
+</div>

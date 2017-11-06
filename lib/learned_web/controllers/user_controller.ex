@@ -7,7 +7,7 @@ defmodule LearnedWeb.UserController do
   def show(conn, %{"user_id" => user_id}) do
     user = (from u in User,
       where: u.id == ^user_id,
-      preload: [:tils])
+      preload: [:posts])
     |> Repo.one
     render conn, "show.html", user: user
   end

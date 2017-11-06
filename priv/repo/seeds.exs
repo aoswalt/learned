@@ -22,8 +22,8 @@ Repo.delete_all User
 user_list
 |> Enum.map(fn u -> Repo.insert!(%User{name: u}) end)
 
-til_list = [
-  "Test TIL",
+post_list = [
+  "Test post",
   "More testing",
   "Some other test",
   "another one",
@@ -34,16 +34,16 @@ til_list = [
   "Atque aut ipsam repudiandae adipisci. Aliquid harum nesciunt temporibus non. Dolor fuga tempore debitis sed temporibus molestiae minima. Qui dicta quo suscipit consectetur vel esse est.\nUllam doloremque fugiat est nemo. Magnam saepe sit minima id. Itaque est illum quo. Nemo mollitia quos excepturi dolores.",
 ]
 
-alias Learned.Til
+alias Learned.Post
 
-Repo.delete_all Til
+Repo.delete_all Post
 # TODO(adam): make this generate based on list
-Repo.insert!(%Til{text: Enum.at(til_list, 0), user_id: 1})
-Repo.insert!(%Til{text: Enum.at(til_list, 1), user_id: 3})
-Repo.insert!(%Til{text: Enum.at(til_list, 2), user_id: 2})
-Repo.insert!(%Til{text: Enum.at(til_list, 3), user_id: 4})
-Repo.insert!(%Til{text: Enum.at(til_list, 4), user_id: 1})
-Repo.insert!(%Til{text: Enum.at(til_list, 5), user_id: 3})
-Repo.insert!(%Til{text: Enum.at(til_list, 6), user_id: 3})
-Repo.insert!(%Til{text: Enum.at(til_list, 7), user_id: 2})
-Repo.insert!(%Til{text: Enum.at(til_list, 8), user_id: 1})
+Repo.insert!(%Post{text: Enum.at(post_list, 0), user_id: 1})
+Repo.insert!(%Post{text: Enum.at(post_list, 1), user_id: 3})
+Repo.insert!(%Post{text: Enum.at(post_list, 2), user_id: 2})
+Repo.insert!(%Post{text: Enum.at(post_list, 3), user_id: 4})
+Repo.insert!(%Post{text: Enum.at(post_list, 4), user_id: 1})
+Repo.insert!(%Post{text: Enum.at(post_list, 5), user_id: 3})
+Repo.insert!(%Post{text: Enum.at(post_list, 6), user_id: 3})
+Repo.insert!(%Post{text: Enum.at(post_list, 7), user_id: 2})
+Repo.insert!(%Post{text: Enum.at(post_list, 8), user_id: 1})

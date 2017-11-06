@@ -3,29 +3,29 @@ p {
   margin: .25rem 0;
 }
 
-.til {
+.post {
   background: lightgrey;
   padding: .5rem;
   margin: .5rem 0;
 }
 
-.til-content {
+.post-content {
   display: flex;
 }
 
-.til-text {
+.post-text {
   flex: 1;
 }
 
-.til-self {
+.post-self {
   text-align: right;
 }
 
-.til-self a {
+.post-self a {
   text-decoration: none;
   color: grey;
 }
 
-.til-author {
+.post-author {
   text-align: right;
 }

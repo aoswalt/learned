@@ -2,12 +2,12 @@ defmodule Learned.User do
   use Ecto.Schema
   import Ecto.Changeset
   alias Learned.User
-  alias Learned.Til
+  alias Learned.Post
 
 
   schema "users" do
     field :name, :string
-    has_many :tils, Til
+    has_many :posts, Post
 
     timestamps()
   end

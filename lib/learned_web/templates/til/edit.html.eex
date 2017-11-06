@@ -1,6 +1,0 @@
-<%= link "Back", to: til_path(LearnedWeb.Endpoint, :show, @id)  %>
-<%= render(__MODULE__,
-  "form.html",
-  changeset: @changeset,
-  action: til_path(@conn, :update, @id))
-%>

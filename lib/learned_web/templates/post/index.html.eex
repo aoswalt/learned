@@ -1,0 +1,2 @@
+<%= link "New Post", to: post_path(@conn, :new) %>
+<%= render_many(@posts, __MODULE__, "post.html") %>

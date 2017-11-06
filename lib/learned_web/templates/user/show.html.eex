@@ -1,5 +1,5 @@
-<%= link "TIL List", to: til_path(@conn, :index) %>
+<%= link "Post List", to: post_path(@conn, :index) %>
 
 <h2><%= name(@user) %></h2>
 
-<%= render_many(@user.tils, LearnedWeb.TilView, "til.html") %>
+<%= render_many(@user.posts, LearnedWeb.PostView, "post.html") %>

@@ -2,11 +2,11 @@ defmodule LearnedWeb.PageController do
   use LearnedWeb, :controller
   import Ecto.Query, only: [from: 2]
   alias Learned.Repo
-  alias Learned.Til
+  alias Learned.Post
 
   def index(conn, _params) do
-    tils = Repo.all(from t in Til, preload: [:user])
+    posts = Repo.all(from t in Post, preload: [:user])
 
-    render conn, :index, tils: tils
+    render conn, :index, posts: posts
   end
 end

@@ -1,2 +1,0 @@
-<%= link "Edit", to: til_path(LearnedWeb.Endpoint, :edit, @til.id) %>
-<%= render_one(@til, __MODULE__, "til.html") %>

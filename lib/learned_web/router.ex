@@ -22,9 +22,9 @@ defmodule LearnedWeb.Router do
     get "/users/:user_id", UserController, :show
   end
 
-  scope "/api", LearnedWeb do
+  scope "/api", LearnedWeb, as: :api do
     pipe_through :api
 
-    resources "/tils", TilController, except: [:new, :edit], as: :til_api
+    resources "/tils", TilController, except: [:new, :edit]
   end
 end

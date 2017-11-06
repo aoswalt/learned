@@ -26,7 +26,7 @@ defmodule LearnedWeb.TilView do
       "id" => til.id,
       "text" => til.text,
       "userId" => til.user_id,
-      "self" => til_api_url(Endpoint, :show, til.id)
+      "self" => api_til_url(Endpoint, :show, til.id)
     }
   end
 

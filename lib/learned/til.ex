@@ -67,6 +67,17 @@ defmodule Learned.Til do
 
   # -- User --
 
+  def get_user(id) do
+    Repo.get(User, id)
+  end
+
+  def get_user_with_posts(id) do
+    User
+    |> where([u], u.id == ^id)
+    |> UserQuery.preload_posts
+    |> Repo.one
+  end
+
   def list_users(queryable \\ User) do
     queryable
     |> Repo.all

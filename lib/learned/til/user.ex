@@ -1,9 +1,8 @@
-defmodule Learned.User do
+defmodule Learned.Til.User do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Learned.User
-  alias Learned.Post
-
+  alias __MODULE__
+  alias Learned.Til.Post
 
   schema "users" do
     field :name, :string
@@ -13,7 +12,7 @@ defmodule Learned.User do
   end
 
   @doc false
-  def changeset(%User{} = user, attrs) do
+  def changeset(%User{} = user, attrs \\ %{}) do
     user
     |> cast(attrs, [:name])
     |> validate_required([:name])

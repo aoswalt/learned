@@ -1,46 +1,41 @@
 defmodule LearnedWeb.PostController do
   use LearnedWeb, :controller
-  import Ecto.Query, only: [from: 2]
-  alias Learned.Repo
-  alias Learned.Post
+  alias Learned.Til
+  alias Learned.Til.Post
 
   def index(conn, _params) do
-    posts = (from t in Post,
-      preload: [:user],
-      order_by: [desc: t.inserted_at])
-    |> Repo.all
-    render conn, :index, posts: posts
+    list = Til.list_posts_with_user_ordered()
+    render conn, :index, posts: list
   end
 
   def edit(conn, %{"id" => id}) do
-    changeset = Post
-    |> Repo.get(id)
-    |> Post.changeset(%{})
+    changeset =
+      id
+      |> Til.get_post
+      |> Til.prepare_post
+
     render conn, :edit, id: id, changeset: changeset
   end
 
   def new(conn, _params) do
-    changeset = Post.changeset(%Post{}, %{})
+    changeset = Til.prepare_post(%Post{})
     render conn, :new, changeset: changeset
   end
 
   def show(conn, %{"id" => id}) do
-    post = (from t in Post,
-      where: t.id == ^id,
-      preload: [:user])
-    |> Repo.one
+    post = Til.get_post_with_user(id)
     render conn, :show, post: post
   end
 
   def create(conn, %{"post" => %{"text" => text}}) do
-    # TODO(adam): get actual user_id
-    %Post{}
-    |> Post.changeset(%{text: text, user_id: 1})
-    |> Repo.insert
+    # TODO(adam): get actual user_id with plug
+    params = %{text: text, user_id: 1}
+
+    params
+    |> Til.create_post
     |> case do
-      # add post id to route
-      {:ok, new_post} -> render conn, :show, post: new_post
-      {:error, changeset} -> render conn, :error, changeset: changeset
+      {:ok, new_post} -> redirect(conn, to: post_path(conn, :show, new_post.id))
+      {:error, changeset} -> render(conn, :error, changeset: changeset)
     end
   end
 
@@ -50,9 +45,8 @@ defmodule LearnedWeb.PostController do
       user_id: user_id
     }
 
-    %Post{}
-    |> Post.changeset(params)
-    |> Repo.insert
+    params
+    |> Til.create_post
     |> case do
       {:ok, new_post} -> render conn, :show, post: new_post
       {:error, changeset} -> render conn, :error, changeset: changeset
@@ -60,9 +54,9 @@ defmodule LearnedWeb.PostController do
   end
 
   def update(conn, %{"id" => id, "post" => %{"text" => text}}) do
-    Repo.get(Post, id)
-    |> Post.changeset(%{text: text})
-    |> Repo.update
+    id
+    |> Til.get_post
+    |> Til.update_post(%{text: text})
     |> case do
       {:ok, post} -> render conn, :show, post: post
       {:error, changeset} -> render conn, :error, changeset: changeset
@@ -70,9 +64,7 @@ defmodule LearnedWeb.PostController do
   end
 
   def delete(conn, %{"id" => id}) do
-    Repo.get(Post, id)
-    |> Repo.delete!
-
+    Til.delete_post!(id)
     redirect(conn, to: post_path(conn, :index))
   end
 end

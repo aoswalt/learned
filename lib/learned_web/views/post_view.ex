@@ -1,8 +1,8 @@
 defmodule LearnedWeb.PostView do
   use LearnedWeb, :view
   import LearnedWeb.Router.Helpers
-  alias Learned.Post
-  alias Learned.User
+  alias Learned.Til.Post
+  alias Learned.Til.User
   alias LearnedWeb.Endpoint
 
   def text(%Post{text: text}), do: text
